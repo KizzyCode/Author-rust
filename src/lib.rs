@@ -23,15 +23,22 @@ pub use crate::config::Config;
 use crate::error::Error;
 use crate::utils::errorresponse::ErrorResponse;
 use crate::validators::traefik;
-use ehttpd::Server;
 use ehttpd::http::Response;
+use ehttpd::server::Server;
 use std::convert::Infallible;
+use std::env::consts::FAMILY;
 
 /// The server runloop
 pub fn serve(config: Config) -> Result<Infallible, Error> {
+    /// The stack size per server thread
+    const STACK_SIZE: usize = match FAMILY.as_bytes() {
+        b"windows" => 131_072,
+        _ => 65_536,
+    };
+
     // Start server
     let server_listen = config.AUTHOR_LISTEN;
-    let server = Server::with_request_response(config.AUTHOR_CONNMAX, move |request| {
+    let server: Server<STACK_SIZE> = Server::with_request_response(config.AUTHOR_CONNMAX, move |request| {
         // Split request path for route matching
         let target = request.target.clone();
         let mut target = target.split(|byte| *byte == b'/');
