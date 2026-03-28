@@ -1,0 +1,38 @@
+[package]
+name = "author"
+version = "0.1.0"
+edition = "2024"
+authors = ["KizzyCode Software Labs./Keziah Biermann <development@kizzycode.de>"]
+keywords = []
+categories = []
+description = "An ultra minimalistic forward-auth server that can be used to verify and extract login conditions"
+license = "BSD-2-Clause OR MIT"
+repository = "https://github.com/KizzyCode/Author-rust"
+readme = "README.md"
+
+
+[[bin]]
+name = "author"
+path = "src/main.rs"
+
+
+[badges]
+appveyor = { repository = "KizzyCode/Author-rust" }
+
+
+[features]
+default = []
+
+
+[dependencies]
+ehttpd = { version = "0.13.1", default-features = false, features = ["server"] }
+regex = { version = "1.12.3", default-features = false, features = ["std"] }
+
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+
+[profile.bench]
+overflow-checks = true
+lto = "fat"
