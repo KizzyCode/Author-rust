@@ -21,7 +21,7 @@ Welcome to `author` 🎉
 
   For example, the URL `/traefik/xforwardedtlsclientcertinfo/%5ESubject=%22CN=(Firstname%5C+Lastname)%22.*$` asserts
   that the `CN` field of the leaf certificate **matches and captures** `Firstname+Lastname`. On success, the captured
-  value will be set as `X-Author-AuthId` header for the response; e.g. `X-Author-AuthId: Firstname+Lastname`.
+  value will be set as `X-Forward-AuthorAuthId` response header; e.g. `X-Forward-AuthorAuthId: Firstname+Lastname`.
 
 
 ## Example

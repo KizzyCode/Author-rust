@@ -33,7 +33,7 @@ impl Config {
     /// The default connection limit if [`Self::AUTHOR_CONNMAX`] is not speficied
     const AUTHOR_CONNMAX_DEFAULT: &str = "1024";
     /// The default response header if [`Self::AUTHOR_HEADER`] is not speficied
-    const AUTHOR_HEADER_DEFAULT: &str = "X-Author-AuthId";
+    const AUTHOR_HEADER_DEFAULT: &str = "X-Forward-AuthorAuthId";
 
     /// Gets the config from the environment
     pub fn from_env() -> Result<Self, Error> {

@@ -276,7 +276,7 @@ pub fn test_200() {
     assert_eq!(response, concat! {
         "HTTP/1.1 200 OK\r\n",
         "Content-Length: 0\r\n",
-        "X-Author-AuthId: Firstname+Lastname\r\n",
+        "X-Forward-AuthorAuthId: Firstname+Lastname\r\n",
         "\r\n"
     });
 }

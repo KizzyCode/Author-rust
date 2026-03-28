@@ -17,7 +17,8 @@ pub fn author_test_server() -> SocketAddr {
         let listen = listen_str.parse().expect("failed to parse AUTHOR_LISTEN");
 
         // Create config and start server in an async context
-        let config = Config { AUTHOR_LISTEN: listen, AUTHOR_CONNMAX: 1024, AUTHOR_HEADER: "X-Author-AuthId".into() };
+        let config =
+            Config { AUTHOR_LISTEN: listen, AUTHOR_CONNMAX: 1024, AUTHOR_HEADER: "X-Forward-AuthorAuthId".into() };
         thread::spawn(|| {
             // Start the server **and** panic if the server crashes
             eprintln!("Starting author test server on {}...", config.AUTHOR_LISTEN);
