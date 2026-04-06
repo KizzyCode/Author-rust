@@ -21,9 +21,11 @@ pub fn test_418_authheaderalreadypresent() {
     // Validate response
     #[rustfmt::skip]
     assert_eq!(response, concat! {
-        "HTTP/1.1 418 I'm a teapot\r\n",
-        "Content-Length: 0\r\n",
-        "\r\n"
+        "HTTP/1.1 400 Bad Request\r\n",
+        "Content-Type: text/plain\r\n",
+        "Content-Length: 32\r\n",
+        "\r\n",
+        "Unexpected authentication header"
     });
 }
 
