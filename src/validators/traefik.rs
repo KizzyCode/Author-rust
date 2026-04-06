@@ -9,6 +9,11 @@ use regex::Regex;
 /// Validates the `X-Forwarded-Tls-Client-Cert-Info` against the given regex, and sets the captured regex match as
 /// authentication response header
 pub fn xforwardedtlsclientcertinfo(config: &Config, request: Request, regex: &[u8]) -> Response {
+    // Sanity check/canary that our header is not injected already
+    let None = request.field(config.AUTHOR_HEADER.as_ref()) else {
+        return Response::new_status_reason(418, b"I'm a teapot");
+    };
+
     // Get the certificate info from the `X-Forwarded-Tls-Client-Cert-Info` header
     let Some(cert_info) = request.field("X-Forwarded-Tls-Client-Cert-Info") else {
         return Response::new_401_unauthorized("ClientCertificate");

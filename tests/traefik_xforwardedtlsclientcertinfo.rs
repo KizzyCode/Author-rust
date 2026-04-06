@@ -3,6 +3,31 @@
 mod utils;
 
 #[test]
+pub fn test_418_authheaderalreadypresent() {
+    // Get test server instance
+    let address = utils::author_test_server();
+
+    // Send request
+    #[rustfmt::skip]
+    let response = utils::request_response(&address, concat! {
+        "GET /traefik/xforwardedtlsclientcertinfo/%5ESubject=%22CN=(Firstname%5C+Lastname)%22.*$ HTTP/1.1\r\n",
+        "X-Forwarded-Tls-Client-Cert-Info: Subject%3D%22CN%3DFirstname+Lastname%22\r\n",
+        "X-Forward-AuthorAuthId: Naughty+Client\r\n",
+        "Connection: close\r\n",
+        "Content-Length: 0\r\n",
+        "\r\n"
+    });
+
+    // Validate response
+    #[rustfmt::skip]
+    assert_eq!(response, concat! {
+        "HTTP/1.1 418 I'm a teapot\r\n",
+        "Content-Length: 0\r\n",
+        "\r\n"
+    });
+}
+
+#[test]
 pub fn test_401_missingheader() {
     // Get test server instance
     let address = utils::author_test_server();

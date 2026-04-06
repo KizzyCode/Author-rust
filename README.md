@@ -1,12 +1,6 @@
 [![License BSD-2-Clause](https://img.shields.io/badge/License-BSD--2--Clause-blue.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![AppVeyor CI](https://ci.appveyor.com/api/projects/status/github/KizzyCode/Author-rust?svg=true)](https://ci.appveyor.com/project/KizzyCode/Author-rust)
-<!--
-[![docs.rs](https://docs.rs/FIXME/badge.svg)](https://docs.rs/FIXME)
-[![crates.io](https://img.shields.io/crates/v/FIXME.svg)](https://crates.io/crates/FIXME)
-[![Download numbers](https://img.shields.io/crates/d/FIXME.svg)](https://crates.io/crates/FIXME)
-[![dependency status](https://deps.rs/crate/FIXME/latest/status.svg)](https://deps.rs/crate/FIXME)
--->
 
 # `author`
 Welcome to `author` 🎉
